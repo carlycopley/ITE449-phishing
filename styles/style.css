@@ -21,7 +21,9 @@ select {
 #analysisDetails,
 #formLabel,
 #getResults,
-#h2results {
+#h2results,
+#h3overall
+{
   --hue: 110deg;
   --saturation: 38%;
   --fill: hwb(var(--hue) var(--saturation) 2%);
@@ -220,4 +222,14 @@ button.aero:active {
 .aero-select select:hover {
   --saturation: 60%;
   box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+#analysisDetails {
+  width: 875px; 
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+#h3overall {
+  width: 300px; 
 }
