@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-<title>Email Domain Analysis</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="styles/style.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Email Domain Analysis</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
 
-<script src=""></script>
-<body
-
-<div>
   <h1 id="findOut">Find Out How Secure An Email Domain Is</h1>
-</div>
 
-<div>
   <h2 id="analysisDetails">Analysis Details (DMARC, SPF Record List, chances of brand impersonation)</h2>
-</div> 
 
-<div id="domainForm">
-  <form>
-    <label for="domainSubmitted">Enter Domain Name:</lable>
-    <br><br>
-    <input type="text" id="domainSubmitted" name="domainSubmitted"></input>
-  <br><br>
-  <button type="submit" class="aero color-green" id="getResults">Get Results</button>
-  </form>
-</div>
+  <div id="domainForm">
+    <form>
+      <label for="domainSubmitted" id="formLabel">Enter Domain Name:</label>
+      <input type="text" id="domainSubmitted" name="domainSubmitted" placeholder="example.com">
+      <button type="submit" id="getResults">Search</button>
+    </form>
+  </div>
 
-<h2 id="h2results">Results</h2>
+  <h2 id="h2results">Results</h2>
 
 </body>
 </html>
