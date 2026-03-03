@@ -1,7 +1,7 @@
 # ITE449-phishing
 ## Spring 2026 Infrastructure Security Group Project
 
-[Wireframe](https://github.com/carlycopley](https://github.com/carlycopley/ITE449-phishing/blob/main/images/email_domain_analysis_wireframe.png?raw=true))
+[Wireframe](https://raw.githubusercontent.com/carlycopley/ITE449-phishing/refs/heads/main/images/email_domain_analysis_wireframe.png)
 
 
 In the early days of computers, security was an afterthought and a very low-priority concern. People viewed hacking as a harmless prank without any real side effects. However, as the world has become increasingly reliant on technology, the importance of cybersecurity has shifted dramatically. To understand why we need cybersecurity, we need to understand the threat cyberattacks pose to every individual user and online infrastructure as a whole. We cannot talk about cyberattacks without mentioning the most dangerous and widespread threat, phishing attacks.
