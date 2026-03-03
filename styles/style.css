@@ -1,14 +1,210 @@
 #findOut {
+  font-size: 50px; 
   text-align: center;
   background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cg fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath opacity=".5" d="M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z"/%3E%3Cpath d="M6 5V0H5v5H0v1h5v94h1V6h94V5H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
   background-color: rgb(93, 137, 100);
   height: 50px; 
   margin: auto; 
-  padding-top: 20px; 
+  padding-top: 10px; 
+  padding-bottom: 10px; 
 }
 
 #analysisDetails {
   text-align: center;
-  background-color: rgb(121, 192, 123);
-  
+  width: 800px;
+  margin: 20px auto; 
+  background-color: rgb(121, 192, 123); 
+  background-size: 25% 50%; 
+  padding-top: 5px; 
+  padding-bottom: 5px; 
+}
+
+#domainForm {
+  font-size: 23px; 
+  border: dashed;
+  width: 475px; 
+  padding-top: 10px; 
+  padding-bottom: 10px; 
+  padding-left: 10px; 
+  padding-right: 10px; 
+}
+
+#h2results {
+  background-color: rgb(188, 215, 191);
+  font-size: 40px; 
+  text-align: center;
+  width: 175px; 
+}
+
+#domainSubmitted {
+  height: 30px; 
+  width: 400px; 
+}
+
+
+button.aero {
+  --saturation: 38%;
+  --hue: 260deg;
+  --fill: hwb(var(--hue) var(--saturation) 2%);
+  --text: hwb(var(--hue) calc(var(--saturation) - 20%) 40%);
+  --border: hwb(var(--hue) var(--saturation) -10%);
+  padding: 0.5em 1.2em;
+  position: relative;
+  border: none;
+  font-size: 1.1em;
+  border-radius: 0.5em;
+  background: radial-gradient(
+      farthest-corner at bottom center,
+      rgba(255, 255, 255, 0.7),
+      transparent
+    ),
+    linear-gradient(to bottom, rgb(104 0 235 / 20%), rgb(80 118 255 / 10%));
+  background-color: var(--fill);
+  color: var(--text);
+  cursor: pointer;
+  border: 0.2px solid var(--border);
+  box-shadow: 0 2px 3px 0px hwb(var(--hue) 30% 21%);
+  transition: background-color 300ms ease, box-shadow 300ms ease,
+    transform 100ms ease;
+}
+
+
+button.aero.color-green {
+  --hue: 110deg;
+}
+
+
+button.aero::after {
+  --gap: min(2%, 1.8px);
+  content: "";
+  position: absolute;
+  top: calc(var(--gap) * 1.5);
+  left: var(--gap);
+  width: calc(100% - (var(--gap) * 2));
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
+  border-radius: calc(0.5em - 1px);
+  transition: 200ms;
+  pointer-events: none;
+}
+
+button.aero:hover {
+  --saturation: 60%;
+  box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+button.aero:hover::after {
+  height: 30%;
+}
+
+button.aero:active::after {
+  height: 40%;
+  transition: 0ms;
+}
+
+button.aero:active {
+  transform: scale(0.96);
+  transition: transform 0ms;
+}
+
+/* BUTTON STYLES END */
+
+/* SELECT STYLES START */
+
+.aero-select {
+  --saturation: 50%;
+  --hue: 190deg;
+  --fill: hwb(var(--hue) var(--saturation) 2%);
+  --text: hwb(var(--hue) calc(var(--saturation) - 20%) 40%);
+  --border: hwb(var(--hue) var(--saturation) -10%);
+
+  width: fit-content;
+  position: relative;
+}
+
+.aero-select::before {
+  --gap: max(2%, 1.8px);
+  content: "";
+  position: absolute;
+  top: calc(var(--gap) * 1.5);
+  left: var(--gap);
+  width: calc(100% - (var(--gap) * 2));
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
+  border-radius: calc(0.5em - 1px);
+  transition: 200ms;
+  pointer-events: none;
+}
+
+.aero-select::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0.3em;
+  bottom: calc(50% - 0.75rem);
+  height: 1.5rem;
+  width: 1.5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.5),
+    transparent,
+    var(--fill)
+  );
+  background-color: #ffffff31;
+  border-radius: 50px;
+  pointer-events: none;
+  box-shadow: 0 1px 3px 0px hwb(var(--hue) 30% 21%);
+}
+
+.aero-select .arrow::before {
+  content: "";
+  display: block;
+  position: absolute;
+  right: calc(0.1em + 10px);
+  bottom: calc(50% - 8px);
+  height: 0;
+  width: 0;
+  border: 5px solid transparent;
+  border-top: 5px solid var(--text);
+  z-index: 10;
+}
+
+.aero-select select {
+  margin: 0;
+  background: radial-gradient(
+      farthest-corner at bottom center,
+      rgba(255, 255, 255, 0.7),
+      transparent
+    ),
+    linear-gradient(to bottom, rgb(104 0 235 / 20%), rgb(80 118 255 / 10%));
+  background-color: var(--fill);
+  color: var(--text);
+  font-size: 1.02em;
+  border-radius: 0.5em;
+
+  padding: 0.4em 1em;   
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  border: 0px solid var(--border);
+  box-shadow: 0 2px 3px 0px hwb(var(--hue) 30% 21%);
+  transition: background-color 300ms ease, box-shadow 300ms ease,
+    transform 100ms ease;
+}
+
+.aero-select select:focus {
+  outline: none;
+}
+
+.aero-select select:hover {
+  --saturation: 60%;
+  box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.3);
 }
