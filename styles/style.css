@@ -1,21 +1,9 @@
 body {
   background-image: url('../images/frutiger_aero_background1.jpg');
+  font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
 }
 
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-label,
-input,
-button,
-select {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
+
 
 #findOut,
 #analysisDetails,
