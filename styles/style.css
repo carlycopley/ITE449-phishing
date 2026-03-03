@@ -3,14 +3,23 @@ body {
   font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
 }
 
-
+/* FORCE form controls to inherit */
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+}
 
 #findOut,
 #analysisDetails,
 #formLabel,
 #getResults,
 #h2results,
-#h3overall
+#h3overall,
+#h3dmarc,
+#h3spf,
+#h3brand
 {
   --hue: 110deg;
   --saturation: 38%;
@@ -218,6 +227,61 @@ button.aero:active {
   margin-right: auto; 
 }
 
-#h3overall {
-  width: 300px; 
+/* Flex row: overall + ratings */
+#mainRow {
+  display: flex;
+  gap: 20px;           /* space between overall and ratings */
+  align-items: flex-start; 
+  flex-wrap: wrap;     /* allows wrapping on small screens */
+}
+
+/* Overall block */
+.result-block {
+  display: flex;
+  flex-direction: column; /* heading below the glassy box */
+  gap: 10px;
+  flex: 1 1 30%;          /* roughly 1/3 of the row */
+  min-width: 250px;
+}
+
+/* Ratings container */
+#ratingContainer {
+  display: flex;
+  gap: 20px;              /* space between rating boxes */
+  flex: 2 1 65%;          /* roughly 2/3 of row */
+  flex-wrap: wrap;         /* wrap if screen gets narrow */
+}
+
+/* Small rating blocks */
+.rating-block {
+  display: flex;
+  flex-direction: column; /* heading below each glassy box */
+  gap: 10px;
+  flex: 1 1 0;           /* evenly share available width */
+  min-width: 100px;
+}
+
+/* Glassy style for all boxes */
+#overallResults, #dmarc, #spf, #brand {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+#overallResults:hover, #dmarc:hover, #spf:hover, #brand:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Headings below boxes */
+#h3overall, #h3dmarc, #h3spf, #h3brand {
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  font-weight: 600;
 }
