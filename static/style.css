@@ -1,3 +1,10 @@
+/*
+	CSS for Domain Analysis Tool
+	____________________________
+	Author: Carly Copley
+	Some code snippets were assisted by ChatGPT, OpenAI
+*/
+
 body {
   background-image: url("/static/frutiger_aero_background1.jpg");
   font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;

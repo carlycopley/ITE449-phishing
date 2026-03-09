@@ -1,3 +1,11 @@
+<!-- 
+	HTML Script for Domain Analysis Tool
+	------------------------------------
+	Authors: Carly Copley, JW Hyde, Lydia Sparks
+	Some code snippets were assisted by Claude (claude.ai), Anthropic
+	Areas assisted: using Jinja2 syntax
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,17 +38,17 @@
     		<!-- Overall Results -->
     		<div class="result-block">
       			<div id="overallResults">
-        			<!-- Add chart or content here -->
+        			<!-- Add Overall Results Chart -->
 
-					<!-- Adding values here, but would look better as chart -->
+					<!-- Overall Score --> 
+					<b>Score: {{ results.overallScore }}</b>
 
-					<!-- Overall Score -->
-					<p>{{ results.overallScore }}</p>
-
-					<!-- Overall Messages -->
+					<!-- Overall Score Messages -->
+					<ul>
 					{% for message in results.overallMessages %}
-						<p>{{ message }}</p>
+						<li>{{ message }}</li>
 					{% endfor %}
+					</ul>
 					
       		</div>
       		<h3 id="h3overall">Overall Results</h3>
@@ -50,51 +58,51 @@
     	<div id="ratingContainer">
       		<div class="rating-block">
         		<div id="dmarc">
-          			<!-- DMARC chart -->
-
-					<!-- Adding values here, but would look better as chart -->
+          			<!-- Add DMARC chart -->
 
 					<!-- DMARC Score -->
-					<p>{{ results.dmarcScore }}</p>
+					<b>Score: {{ results.dmarcScore }}</b>
 
-					<!-- DMARC Messages -->
+					<!-- DMARC Score Messages -->
+					<ul>
 					{% for message in results.dmarcMessages %}
-						<p>{{ message }}</p>
+						<li>{{ message }}</li>
 					{% endfor %}
+					</ul>
 
         		</div>
         		<h3 id="h3dmarc">DMARC</h3>
       		</div>
       		<div class="rating-block">
         		<div id="spf">
-          			<!-- SPF chart -->
-
-					<!-- Adding values here, but would look better as chart -->
+          			<!-- Add SPF chart -->
 
 					<!-- SPF Score -->
-					<p>{{ results.spfScore }}</p>
+					<b>Score: {{ results.spfScore }}</b>
 
-					<!-- SPF Messages -->
+					<!-- SPF Score Messages -->
+					<ul>
 					{% for message in results.spfMessages %}
-						<p>{{ message }}</p>
+						<li>{{ message }}</li>
 					{% endfor %}
+					</ul>
 
         		</div>
         		<h3 id="h3spf">SPF</h3>
       		</div>
       		<div class="rating-block">
         		<div id="brand">
-          			<!-- Brand chart -->
+          			<!-- Add Brand chart -->
 
-					<!-- Adding values here, but would look better as chart -->
+					<!-- Brand Impersonation Score -->
+					<b>Score: {{ results.brandImpScore }}</b>
 
-					<!-- Brand Score -->
-					<p>{{ results.brandImpScore }}</p>
-
-					<!-- Brand Messages -->
+					<!-- Brand Impersonation Score Messages -->
+					<ul>
 					{% for message in results.brandImpMessages %}
-						<p>{{ message }}</p>
+						<li>{{ message }}</li>
 					{% endfor %}
+					</ul>
 
         		</div>
         		<h3 id="h3brand">Brand</h3>
