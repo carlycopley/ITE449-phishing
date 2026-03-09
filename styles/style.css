@@ -49,11 +49,6 @@ textarea {
 
 #domainForm {
   font-size: 23px;
-  display: flex;
-}
-
-#results {
-  display: flex; 
 }
 
 #domainSubmitted {
