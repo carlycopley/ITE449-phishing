@@ -1,6 +1,24 @@
 # Add header comment
 
+from flask import Flask, request, render_template
+from dataclasses import dataclass, field
+from typing import Optional
 import checkdmarc
+
+# From Claude: Flask code, DomainResults class, other parts mentioned
+app = Flask(__name__)
+
+@dataclass
+class DomainResults:
+	domain: str
+	overallScore: Optional[int] = None
+	dmarcScore: Optional[int] = None
+	spfScore: Optional[int] = None
+	brandImpScore: Optional[int] = None
+	dmarcMessages: list = field(default_factory=list)
+	spfMessages: list = field(default_factory=list)
+	brandImpMessages: list = field(default_factory=list)
+	overallMessages: list = field(default_factory=list)
 
 def AssignDmarcScore(domain, dmarcAnalysis):
 	score = 100
@@ -61,9 +79,9 @@ def AssignSpfScore(domain, spfAnalysis):
 		else:
 			spfAnalysis.append("DNS Lookup Count is NOT within a safe range. Limit lookups to 10.")
 		
-		if score in range(0, 30):
+		if score in range(0, 40):
 			spfAnalysis.append("SPF Risk Score is LOW.")
-		elif score in range(40, 60):
+		elif score in range(40, 70):
 			spfAnalysis.append("SPF Risk Score is MEDIUM.")
 		else:
 			spfAnalysis.append("SPF Risk Score is HIGH.")
@@ -105,40 +123,53 @@ def AssignBrandImpScore(domain, brandImpAnalysis):
 
 	return score
 
-# Hard-coded for now, but will use domain input by user.
-# Add validation to make sure user is entering a valid domain name.
-domain = "google.com"
+def AnalyzeDomain(domain):
+	results = DomainResults(domain=domain)
 
-# DMARC Record Risk Score
-dmarcAnalysis = []
-dmarcScore = AssignDmarcScore(domain, dmarcAnalysis)
-print("The DMARC Record Risk Score is", dmarcScore)
+	overallAnalysis = []
 
-for entry in dmarcAnalysis:
-	print(entry)
+	# DMARC Record Risk Score
+	dmarcAnalysis = []
+	dmarcScore = AssignDmarcScore(domain, dmarcAnalysis)
 
-print()
+	# SPF Record Risk Score
+	spfAnalysis = []
+	spfScore = AssignSpfScore(domain, spfAnalysis)
 
-# SPF Record Risk Score
-spfAnalysis = []
-spfScore = AssignSpfScore(domain, spfAnalysis)
-print("The SPF Record Risk Score is", spfScore)
+	# Brand Impersonation Risk Score
+	brandImpAnalysis = []
+	brandImpScore = AssignBrandImpScore(domain, brandImpAnalysis)
 
-for entry in spfAnalysis:
-	print(entry)
+	# Overall Risk Score
+	overallRiskScore = round((dmarcScore + spfScore + brandImpScore) / 3)
+	message = f"The Overall Risk Score is {round(overallRiskScore)}"
+	overallAnalysis.append(message)
 
-print()
+	if overallRiskScore >= 80:
+		overallAnalysis.append("We suggest reporting this domain to the Internet Crime Complaint Center (IC3).")
 
-# Brand Impersonation Risk Score
-brandImpAnalysis = []
-brandImpScore = AssignBrandImpScore(domain, brandImpAnalysis)
-print("The Brand Impersonation Risk Score is", brandImpScore)
+	results.overallScore = overallRiskScore
+	results.dmarcScore = dmarcScore
+	results.spfScore = spfScore
+	results.brandImpScore = brandImpScore
+	results.dmarcMessages = dmarcAnalysis
+	results.spfMessages = spfAnalysis
+	results.brandImpMessages = brandImpAnalysis
+	results.overallMessages = overallAnalysis
 
-for entry in brandImpAnalysis:
-	print(entry)
+	return results
 
-# Overall Risk Score
-overallRiskScore = (dmarcScore + spfScore + brandImpScore) / 3
-print("The Overall Risk Score is", round(overallRiskScore))
 
-print()
+@app.route("/", methods=["GET", "POST"])
+def index():
+	results = None
+
+	if request.method == "POST":
+		domain = request.form.get("domainSubmitted", "").strip()
+		if domain:
+			results = AnalyzeDomain(domain)
+	
+	return render_template("index.html", results=results)
+
+if __name__ == "__main__":
+	app.run(debug=True)
