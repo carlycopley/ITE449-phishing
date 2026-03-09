@@ -280,7 +280,6 @@ button.aero:active {
 
 /* Headings below boxes */
 #h3overall, #h3dmarc, #h3spf, #h3brand {
-  color: #ffffff;
   text-align: center;
   margin: 0;
   font-weight: 600;
