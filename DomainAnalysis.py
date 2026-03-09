@@ -1,13 +1,23 @@
-# Add header comment
+# Domain Analysis Tool
+# ____________________
+# This program determines an overall domain risk score by finding individual
+# risk scores for the domain's DMARC Record, SPF Record, and brand impersonation
+# likelihood, and then averaging the individual scores to determine the overall
+# risk score.
+# ____________________
+# Author: Lydia Sparks
+# Some code snippets were assisted by Claude (claude.ai), Anthropic
+# Areas assisted: Flask usage, DomainResults class, checkdmarc usage,
+# and exception handling
 
 from flask import Flask, request, render_template
 from dataclasses import dataclass, field
 from typing import Optional
 import checkdmarc
 
-# From Claude: Flask code, DomainResults class, other parts mentioned
 app = Flask(__name__)
 
+# Used for simple data handling in HTML script.
 @dataclass
 class DomainResults:
 	domain: str
@@ -20,12 +30,20 @@ class DomainResults:
 	brandImpMessages: list = field(default_factory=list)
 	overallMessages: list = field(default_factory=list)
 
+# AssignDmarcScore() determines a domain's DMARC Record risk score, where
+# it checks if p is quarantine or reject and that pct is 100 (fully enforced).
 def AssignDmarcScore(domain, dmarcAnalysis):
 	score = 100
-	# Code from Claude used from here
+
 	try: 
 		result = checkdmarc.check_dmarc(domain)
+		
+		# if network connection blocks DNS query or other lookup failure
+		if not result or "tags" not in result:
+			dmarcAnalysis.append("DNS lookup failed.")
+			return score
 
+		# extracting needed info from DMARC record
 		tags = result["tags"]
 
 		policy = tags["p"]["value"]
@@ -34,7 +52,6 @@ def AssignDmarcScore(domain, dmarcAnalysis):
 		pct = tags.get("pct", {}).get("value", 100)
 
 		if policy in ("quarantine", "reject"):
-	# to here
 			if policy in "reject":
 				score = 0
 				dmarcAnalysis.append("p is set to 'reject': DMARC Policy is STRONG")
@@ -48,7 +65,6 @@ def AssignDmarcScore(domain, dmarcAnalysis):
 		else:
 			dmarcAnalysis.append("p is not set to 'reject' or 'quarantine': DMARC Policy is WEAK")
 
-	# Claude used to determine what exceptions to use
 	except checkdmarc.dmarc.DMARCRecordNotFound:
 		dmarcAnalysis.append("No DMARC Record was found.")
 	except KeyError:
@@ -62,13 +78,16 @@ def AssignDmarcScore(domain, dmarcAnalysis):
 
 	return score
 
+# AssignSpfScore() determines a domain's SPF Record risk score, where it checks
+# the number of DNS lookups. To stay within a safe range, the lookup count cannot
+# exceed 10.
 def AssignSpfScore(domain, spfAnalysis):
 	score = 100
-	# Code from Claude used from here
+
 	try:
+		# gets number of DNS lookups
 		result = checkdmarc.check_spf(domain)
 		dnsLookupCount = result["dns_lookups"]
-	# to here
 		
 		if dnsLookupCount <= 10:
 			spfAnalysis.append("DNS Lookup Count is within a safe range.")
@@ -92,6 +111,10 @@ def AssignSpfScore(domain, spfAnalysis):
 
 	return score
 
+# AssignBrandImpScore() determines a domain's brand impersonation risk score,
+# where it checks if part of a domain name belongs to any entry in three lists:
+# trustworthyTlds, financialNames, and popularBrands. If it belongs to one or
+# more of the lists, the risk score increases.
 def AssignBrandImpScore(domain, brandImpAnalysis):
 	score = 0
 	
@@ -123,6 +146,9 @@ def AssignBrandImpScore(domain, brandImpAnalysis):
 
 	return score
 
+# AnalyzeDomain() calls each individual score function and averages the scores
+# to determine the overall risk score. All the data is assigned to the DomainResults
+# fields.
 def AnalyzeDomain(domain):
 	results = DomainResults(domain=domain)
 
@@ -159,7 +185,7 @@ def AnalyzeDomain(domain):
 
 	return results
 
-
+# Sends the results to the HTML script if a domain is submitted.
 @app.route("/", methods=["GET", "POST"])
 def index():
 	results = None
