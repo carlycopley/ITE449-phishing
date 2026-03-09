@@ -1,5 +1,5 @@
 body {
-  background-image: url('../images/frutiger_aero_background1.jpg');
+  background-image: url("/static/frutiger_aero_background1.jpg");
   font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
 }
 
