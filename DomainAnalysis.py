@@ -54,16 +54,16 @@ def AssignDmarcScore(domain, dmarcAnalysis):
 		if policy in ("quarantine", "reject"):
 			if policy in "reject":
 				score = 0
-				dmarcAnalysis.append("p is set to 'reject': DMARC Policy is STRONG")
+				dmarcAnalysis.append("p is set to 'reject': DMARC Policy is STRONG.")
 			else:
 				score = 25
-				dmarcAnalysis.append("p is set to 'quarantine': DMARC Policy is OKAY")
+				dmarcAnalysis.append("p is set to 'quarantine': DMARC Policy is OKAY.")
 		
 			if pct < 100:
 				score += (100 - pct)
-				dmarcAnalysis.append("pct < 100: Set to 100 for stronger DMARC Policy")
+				dmarcAnalysis.append("pct < 100: Set to 100 for stronger DMARC Policy.")
 		else:
-			dmarcAnalysis.append("p is not set to 'reject' or 'quarantine': DMARC Policy is WEAK")
+			dmarcAnalysis.append("p is not set to 'reject' or 'quarantine': DMARC Policy is WEAK.")
 
 	except checkdmarc.dmarc.DMARCRecordNotFound:
 		dmarcAnalysis.append("No DMARC Record was found.")
@@ -90,9 +90,10 @@ def AssignSpfScore(domain, spfAnalysis):
 		dnsLookupCount = result["dns_lookups"]
 		
 		if dnsLookupCount <= 10:
-			spfAnalysis.append("DNS Lookup Count is within a safe range.")
+			message = "DNS Lookup Count is within a safe range: " + str(dnsLookupCount) + " lookups."
+			spfAnalysis.append(message)
 			if dnsLookupCount >= 6:
-				spfAnalysis.append("DNS Lookup Count is close to maximum (10).")
+				spfAnalysis.append("DNS Lookup Count is close to the maximum of 10 lookups.")
 		
 			score = dnsLookupCount * 10
 		else:
@@ -126,7 +127,7 @@ def AssignBrandImpScore(domain, brandImpAnalysis):
 		".cash", ".accountant", ".accountants", ".tax", ".fund", ".capital",
 		".bond", ".insurance", ".investments", ".trading", "bank"]
 
-	popularBrands = ["google", "amazon", "instagram", "facebook", "x", "pinterest",
+	popularBrands = ["google", "amazon", "instagram", "facebook", "pinterest",
 		"linkedin", "youtube", "tiktok", "walmart", "target", "disney",
 		"microsoft", "apple", "netflix", "hulu", "hbo"]
 
@@ -168,11 +169,9 @@ def AnalyzeDomain(domain):
 
 	# Overall Risk Score
 	overallRiskScore = round((dmarcScore + spfScore + brandImpScore) / 3)
-	message = f"The Overall Risk Score is {round(overallRiskScore)}"
-	overallAnalysis.append(message)
 
 	if overallRiskScore >= 80:
-		overallAnalysis.append("We suggest reporting this domain to the Internet Crime Complaint Center (IC3).")
+		overallAnalysis.append("ALERT: If this domain is valid, we suggest reporting it to the Internet Crime Complaint Center (IC3) for further investigation.")
 
 	results.overallScore = overallRiskScore
 	results.dmarcScore = dmarcScore
