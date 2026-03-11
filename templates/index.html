@@ -122,13 +122,13 @@
 		data: {
 			labels: ['Score', 'Remaining'],
 			datasets: [{
-				data: [{ results.overallScore }},100 - {{ results.overallScore }}]
+				data: [{{ results.overallScore }}, 100 - {{ results.overallScore }}]
 			}]
 		}
 	});
 
 	
-	const dmarc = new Chart(document.getElementById('dmarcChart'). {
+	const dmarc = new Chart(document.getElementById('dmarcChart'), {
 		type: 'doughnut',
 		data: {
 			labels: ['Score', 'Remaining'],
@@ -144,7 +144,7 @@
 		data: {
 			labels: ['Score','Remaining'],
 			datasets: [{
-				data: [{{ results.spfScore }}, 100 - {{results.spfScore }}]
+				data: [{{ results.spfScore }}, 100 - {{ results.spfScore }}]
 			}]
 		}
 	});
