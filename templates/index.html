@@ -14,6 +14,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Email Domain Analysis</title>
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -41,7 +42,7 @@
 			<div class="result-block">
 				<div id="overallResults">
 					<!-- Add Overall Results Chart -->
-
+					<canvas id="overallChart"></canvas>
 					<!-- Overall Score -->
 					<b>Score: {{ results.overallScore }}</b>
 
@@ -61,10 +62,10 @@
 				<div class="rating-block">
 					<div id="dmarc">
 						<!-- Add DMARC chart -->
-
+						<canvas id="dmarcChart"></canvas>
 						<!-- DMARC Score -->
 						<b>Score: {{ results.dmarcScore }}</b>
-
+						
 						<!-- DMARC Score Messages -->
 						<ul>
 							{% for message in results.dmarcMessages %}
@@ -78,7 +79,7 @@
 				<div class="rating-block">
 					<div id="spf">
 						<!-- Add SPF chart -->
-
+						<canvas id="spfChart"></canvas>
 						<!-- SPF Score -->
 						<b>Score: {{ results.spfScore }}</b>
 
@@ -95,7 +96,7 @@
 				<div class="rating-block">
 					<div id="brand">
 						<!-- Add Brand chart -->
-
+						<canvas id="brandChart"></canvas>
 						<!-- Brand Impersonation Score -->
 						<b>Score: {{ results.brandImpScore }}</b>
 
@@ -114,7 +115,53 @@
 	</div>
 
 	{% endif %}
+	
+	<script>
+	const overall = new Chart(document.getElementById('overallChart'), {
+		type: 'doughnut',
+		data: {
+			labels: ['Score', 'Remaining'],
+			datasets: [{
+				data: [{ results.overallScore }},100 - {{ results.overallScore }}]
+			}]
+		}
+	});
 
+	
+	const dmarc = new Chart(document.getElementById('dmarcChart'). {
+		type: 'doughnut',
+		data: {
+			labels: ['Score', 'Remaining'],
+			datasets: [{
+				data: [{{ results.dmarcScore }}, 100 - {{ results.dmarcScore}}]
+			}]
+		}
+	});					
+
+	
+	const spf = new Chart(document.getElementById('spfChart'), {
+		type: 'doughnut',
+		data: {
+			labels: ['Score','Remaining'],
+			datasets: [{
+				data: [{{ results.spfScore }}, 100 - {{results.spfScore }}]
+			}]
+		}
+	});
+
+
+	const brand = new Chart(document.getElementById('brandChart'), {
+		type: 'doughnut',
+		data: {
+			labels: ['Score', 'Remaining'],
+			datasets: [{
+				data: [{{ results.brandImpScore }}, 100 - {{ results.brandImpScore }}]
+			}]
+		}
+	});
+
+	
+	</script>
 </body>
 
 </html>
