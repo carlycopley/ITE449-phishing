@@ -10,14 +10,6 @@ body {
   font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
 }
 
-/* FORCE form controls to inherit */
-input,
-button,
-select,
-textarea {
-  font-family: inherit;
-}
-
 #findOut,
 #analysisDetails,
 #formLabel,
@@ -26,8 +18,7 @@ textarea {
 #h3overall,
 #h3dmarc,
 #h3spf,
-#h3brand
-{
+#h3brand {
   --hue: 110deg;
   --saturation: 38%;
   --fill: hwb(var(--hue) var(--saturation) 2%);
@@ -35,11 +26,9 @@ textarea {
   --border: hwb(var(--hue) var(--saturation) -10%);
 
   position: relative;
-  background: radial-gradient(
-      farthest-corner at bottom center,
+  background: radial-gradient(farthest-corner at bottom center,
       rgba(255, 255, 255, 0.7),
-      transparent
-    ),
+      transparent),
     linear-gradient(to bottom, rgb(104 0 235 / 20%), rgb(80 118 255 / 10%));
 
   background-color: var(--fill);
@@ -51,6 +40,8 @@ textarea {
 
   padding: 10px;
 
+  font-family: "Trebuchet MS", "Segoe UI", Tahoma, sans-serif;
+  font-weight: bold;
   text-align: center;
 }
 
@@ -74,11 +65,9 @@ button.aero {
   border: none;
   font-size: 1.1em;
   border-radius: 0.5em;
-  background: radial-gradient(
-      farthest-corner at bottom center,
+  background: radial-gradient(farthest-corner at bottom center,
       rgba(255, 255, 255, 0.7),
-      transparent
-    ),
+      transparent),
     linear-gradient(to bottom, rgb(104 0 235 / 20%), rgb(80 118 255 / 10%));
   background-color: var(--fill);
   color: var(--text);
@@ -101,11 +90,9 @@ button.aero::after {
   left: var(--gap);
   width: calc(100% - (var(--gap) * 2));
   height: 40%;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.1)
-  );
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.1));
   border-radius: calc(0.5em - 1px);
   transition: 200ms;
   pointer-events: none;
@@ -153,11 +140,9 @@ button.aero:active {
   left: var(--gap);
   width: calc(100% - (var(--gap) * 2));
   height: 40%;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.1)
-  );
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 255, 255, 0.1));
   border-radius: calc(0.5em - 1px);
   transition: 200ms;
   pointer-events: none;
@@ -171,12 +156,10 @@ button.aero:active {
   bottom: calc(50% - 0.75rem);
   height: 1.5rem;
   width: 1.5rem;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.5),
-    transparent,
-    var(--fill)
-  );
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.5),
+      transparent,
+      var(--fill));
   background-color: #ffffff31;
   border-radius: 50px;
   pointer-events: none;
@@ -198,11 +181,9 @@ button.aero:active {
 
 .aero-select select {
   margin: 0;
-  background: radial-gradient(
-      farthest-corner at bottom center,
+  background: radial-gradient(farthest-corner at bottom center,
       rgba(255, 255, 255, 0.7),
-      transparent
-    ),
+      transparent),
     linear-gradient(to bottom, rgb(104 0 235 / 20%), rgb(80 118 255 / 10%));
   background-color: var(--fill);
   color: var(--text);
@@ -229,47 +210,59 @@ button.aero:active {
 }
 
 #analysisDetails {
-  width: 875px; 
+  width: 875px;
   margin-left: auto;
-  margin-right: auto; 
+  margin-right: auto;
 }
 
 /* Flex row: overall + ratings */
 #mainRow {
   display: flex;
-  gap: 20px;           /* space between overall and ratings */
-  align-items: flex-start; 
-  flex-wrap: wrap;     /* allows wrapping on small screens */
+  gap: 20px;
+  /* space between overall and ratings */
+  align-items: flex-start;
+  flex-wrap: wrap;
+  /* allows wrapping on small screens */
 }
 
 /* Overall block */
 .result-block {
   display: flex;
-  flex-direction: column; /* heading below the glassy box */
+  flex-direction: column;
+  /* heading below the glassy box */
   gap: 10px;
-  flex: 1 1 30%;          /* roughly 1/3 of the row */
+  flex: 1 1 30%;
+  /* roughly 1/3 of the row */
   min-width: 250px;
 }
 
 /* Ratings container */
 #ratingContainer {
   display: flex;
-  gap: 20px;              /* space between rating boxes */
-  flex: 2 1 65%;          /* roughly 2/3 of row */
-  flex-wrap: wrap;         /* wrap if screen gets narrow */
+  gap: 20px;
+  /* space between rating boxes */
+  flex: 2 1 65%;
+  /* roughly 2/3 of row */
+  flex-wrap: wrap;
+  /* wrap if screen gets narrow */
 }
 
 /* Small rating blocks */
 .rating-block {
   display: flex;
-  flex-direction: column; /* heading below each glassy box */
+  flex-direction: column;
+  /* heading below each glassy box */
   gap: 10px;
-  flex: 1 1 0;           /* evenly share available width */
+  flex: 1 1 0;
+  /* evenly share available width */
   min-width: 100px;
 }
 
 /* Glassy style for all boxes */
-#overallResults, #dmarc, #spf, #brand {
+#overallResults,
+#dmarc,
+#spf,
+#brand {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(15px) saturate(150%);
   -webkit-backdrop-filter: blur(15px) saturate(150%);
@@ -280,14 +273,24 @@ button.aero:active {
   transition: all 0.3s ease;
 }
 
-#overallResults:hover, #dmarc:hover, #spf:hover, #brand:hover {
+#overallResults:hover,
+#dmarc:hover,
+#spf:hover,
+#brand:hover {
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* Headings below boxes */
-#h3overall, #h3dmarc, #h3spf, #h3brand {
+#h3overall,
+#h3dmarc,
+#h3spf,
+#h3brand {
   text-align: center;
   margin: 0;
   font-weight: 600;
+}
+
+#mainRow {
+  color: white;
 }

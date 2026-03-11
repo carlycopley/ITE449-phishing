@@ -10,107 +10,109 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Email Domain Analysis</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Email Domain Analysis</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-  <h1 id="findOut">Find Out How Secure An Email Domain Is</h1>
+	<h1 id="findOut">Find Out How Secure An Email Domain Is</h1>
 
-  <h2 id="analysisDetails">Analysis Details (DMARC, SPF Record List, chances of brand impersonation)</h2>
+	<h2 id="analysisDetails">Our app implements Domain-based Message Authentication, Reporting, and Conformance (DMARC), 
+		and Sender Policy Framework (SPF), as well as a brand impersonation check to generate ratings for the security of an email domain.
+		These ratings help users to navigate safely through the email landscape and to avoid phishing attempts.</h2>
 
-  <div id="domainForm">
-    <form method="POST">
-      <label for="domainSubmitted" id="formLabel">Enter Domain Name:</label>
-      <input type="text" id="domainSubmitted" name="domainSubmitted" placeholder="example.com">
-      <button type="submit" id="getResults">Analyze</button>
-    </form>
-  </div>
+	<div id="domainForm">
+		<form method="POST">
+			<label for="domainSubmitted" id="formLabel">Enter Domain Name:</label>
+			<input type="text" id="domainSubmitted" name="domainSubmitted" placeholder="example.com">
+			<button type="submit" id="getResults">Analyze</button>
+		</form>
+	</div>
 
-    {% if results %}
-  		<div id="results">
-  		<h2 id="h2results">Results for {{ results.domain }}</h2>
+	{% if results %}
+	<div id="results">
+		<h2 id="h2results">Results for {{ results.domain }}</h2>
 
-  		<div id="mainRow">
-    		<!-- Overall Results -->
-    		<div class="result-block">
-      			<div id="overallResults">
-        			<!-- Add Overall Results Chart -->
+		<div id="mainRow">
+			<!-- Overall Results -->
+			<div class="result-block">
+				<div id="overallResults">
+					<!-- Add Overall Results Chart -->
 
-					<!-- Overall Score --> 
+					<!-- Overall Score -->
 					<b>Score: {{ results.overallScore }}</b>
 
 					<!-- Overall Score Messages -->
 					<ul>
-					{% for message in results.overallMessages %}
+						{% for message in results.overallMessages %}
 						<li>{{ message }}</li>
-					{% endfor %}
+						{% endfor %}
 					</ul>
-					
-      		</div>
-      		<h3 id="h3overall">Overall Results</h3>
+
+				</div>
+				<h3 id="h3overall">Overall Results</h3>
+			</div>
+
+			<!-- Ratings side by side -->
+			<div id="ratingContainer">
+				<div class="rating-block">
+					<div id="dmarc">
+						<!-- Add DMARC chart -->
+
+						<!-- DMARC Score -->
+						<b>Score: {{ results.dmarcScore }}</b>
+
+						<!-- DMARC Score Messages -->
+						<ul>
+							{% for message in results.dmarcMessages %}
+							<li>{{ message }}</li>
+							{% endfor %}
+						</ul>
+
+					</div>
+					<h3 id="h3dmarc">DMARC</h3>
+				</div>
+				<div class="rating-block">
+					<div id="spf">
+						<!-- Add SPF chart -->
+
+						<!-- SPF Score -->
+						<b>Score: {{ results.spfScore }}</b>
+
+						<!-- SPF Score Messages -->
+						<ul>
+							{% for message in results.spfMessages %}
+							<li>{{ message }}</li>
+							{% endfor %}
+						</ul>
+
+					</div>
+					<h3 id="h3spf">SPF</h3>
+				</div>
+				<div class="rating-block">
+					<div id="brand">
+						<!-- Add Brand chart -->
+
+						<!-- Brand Impersonation Score -->
+						<b>Score: {{ results.brandImpScore }}</b>
+
+						<!-- Brand Impersonation Score Messages -->
+						<ul>
+							{% for message in results.brandImpMessages %}
+							<li>{{ message }}</li>
+							{% endfor %}
+						</ul>
+
+					</div>
+					<h3 id="h3brand">Brand</h3>
+				</div>
+			</div>
 		</div>
-
-    	<!-- Ratings side by side -->
-    	<div id="ratingContainer">
-      		<div class="rating-block">
-        		<div id="dmarc">
-          			<!-- Add DMARC chart -->
-
-					<!-- DMARC Score -->
-					<b>Score: {{ results.dmarcScore }}</b>
-
-					<!-- DMARC Score Messages -->
-					<ul>
-					{% for message in results.dmarcMessages %}
-						<li>{{ message }}</li>
-					{% endfor %}
-					</ul>
-
-        		</div>
-        		<h3 id="h3dmarc">DMARC</h3>
-      		</div>
-      		<div class="rating-block">
-        		<div id="spf">
-          			<!-- Add SPF chart -->
-
-					<!-- SPF Score -->
-					<b>Score: {{ results.spfScore }}</b>
-
-					<!-- SPF Score Messages -->
-					<ul>
-					{% for message in results.spfMessages %}
-						<li>{{ message }}</li>
-					{% endfor %}
-					</ul>
-
-        		</div>
-        		<h3 id="h3spf">SPF</h3>
-      		</div>
-      		<div class="rating-block">
-        		<div id="brand">
-          			<!-- Add Brand chart -->
-
-					<!-- Brand Impersonation Score -->
-					<b>Score: {{ results.brandImpScore }}</b>
-
-					<!-- Brand Impersonation Score Messages -->
-					<ul>
-					{% for message in results.brandImpMessages %}
-						<li>{{ message }}</li>
-					{% endfor %}
-					</ul>
-
-        		</div>
-        		<h3 id="h3brand">Brand</h3>
-      		</div>
-    	</div>
-  		</div>
 	</div>
-	
+
 	{% endif %}
 
 </body>
