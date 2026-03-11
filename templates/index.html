@@ -21,9 +21,10 @@
 
 	<h1 id="findOut">Find Out How Secure An Email Domain Is</h1>
 
-	<h2 id="analysisDetails">Our app implements Domain-based Message Authentication, Reporting, and Conformance (DMARC), 
-		and Sender Policy Framework (SPF), as well as a brand impersonation check to generate ratings for the security of an email domain.
-		These ratings help users to navigate safely through the email landscape and to avoid phishing attempts.</h2>
+	<h2 id="analysisDetails">Our app uses Domain-based Message Authentication, Reporting, and Conformance (DMARC),
+		Sender Policy Framework (SPF), as well as a brand impersonation check to generate scores for the security of an email domain.
+		The lower the risk score, the safer the domain is.
+		These scores help users to navigate safely through the email landscape and to avoid phishing attempts.</h2>
 
 	<div id="domainForm">
 		<form method="POST">
@@ -44,7 +45,7 @@
 					<!-- Add Overall Results Chart -->
 					<canvas id="overallChart"></canvas>
 					<!-- Overall Score -->
-					<b>Score: {{ results.overallScore }}</b>
+					<b>Overall Risk Score: {{ results.overallScore }}</b>
 
 					<!-- Overall Score Messages -->
 					<ul>
@@ -64,6 +65,7 @@
 						<!-- Add DMARC chart -->
 						<canvas id="dmarcChart"></canvas>
 						<!-- DMARC Score -->
+<<<<<<< HEAD
 						<b>Score: {{ results.dmarcScore }}</b>
 						
 						<!-- DMARC Score Messages -->
@@ -81,7 +83,7 @@
 						<!-- Add SPF chart -->
 						<canvas id="spfChart"></canvas>
 						<!-- SPF Score -->
-						<b>Score: {{ results.spfScore }}</b>
+						<b>SPF Risk Score: {{ results.spfScore }}</b>
 
 						<!-- SPF Score Messages -->
 						<ul>
@@ -98,7 +100,7 @@
 						<!-- Add Brand chart -->
 						<canvas id="brandChart"></canvas>
 						<!-- Brand Impersonation Score -->
-						<b>Score: {{ results.brandImpScore }}</b>
+						<b>Brand Impersonation Risk Score: {{ results.brandImpScore }}</b>
 
 						<!-- Brand Impersonation Score Messages -->
 						<ul>
@@ -108,7 +110,7 @@
 						</ul>
 
 					</div>
-					<h3 id="h3brand">Brand</h3>
+					<h3 id="h3brand">Brand Impersonation</h3>
 				</div>
 			</div>
 		</div>
