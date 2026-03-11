@@ -3,7 +3,6 @@
 	------------------------------------
 	Authors: Carly Copley, JW Hyde, Lydia Sparks
 	Some code snippets were assisted by Claude (claude.ai), Anthropic
-	Areas assisted: using Jinja2 syntax
 -->
 
 <!DOCTYPE html>
@@ -42,8 +41,9 @@
 			<!-- Overall Results -->
 			<div class="result-block">
 				<div id="overallResults">
-					<!-- Add Overall Results Chart -->
+					<!-- Overall Results Chart -->
 					<canvas id="overallChart"></canvas>
+
 					<!-- Overall Score -->
 					<b>Overall Risk Score: {{ results.overallScore }}</b>
 
@@ -64,9 +64,9 @@
 					<div id="dmarc">
 						<!-- Add DMARC chart -->
 						<canvas id="dmarcChart"></canvas>
-						<!-- DMARC Score -->
 
-						<b>Score: {{ results.dmarcScore }}</b>
+						<!-- DMARC Score -->
+						<b>DMARC Risk Score: {{ results.dmarcScore }}</b>
 						
 						<!-- DMARC Score Messages -->
 						<ul>
@@ -82,6 +82,7 @@
 					<div id="spf">
 						<!-- Add SPF chart -->
 						<canvas id="spfChart"></canvas>
+
 						<!-- SPF Score -->
 						<b>SPF Risk Score: {{ results.spfScore }}</b>
 
@@ -99,6 +100,7 @@
 					<div id="brand">
 						<!-- Add Brand chart -->
 						<canvas id="brandChart"></canvas>
+
 						<!-- Brand Impersonation Score -->
 						<b>Brand Impersonation Risk Score: {{ results.brandImpScore }}</b>
 
@@ -124,8 +126,25 @@
 		data: {
 			labels: ['Score', 'Remaining'],
 			datasets: [{
-				data: [{{ results.overallScore }}, 100 - {{ results.overallScore }}]
+				data: [{{ results.overallScore }}, 100 - {{ results.overallScore }}],
+				backgroundColor: ['rgb(144, 218, 149)', 'rgb(255, 255, 255)']
 			}]
+		},
+		options: {
+			cutout: '70%',
+			plugins: {
+				legend: {
+					labels: {
+						color: 'rgb(255, 255, 255)',
+						font: {
+							family: '"Trebuchet MS", "Segoe UI", Tahoma, sans-serif',
+							size: 14,
+							style: 'normal',
+							weight: 'bold'
+						}
+					}
+				}
+			}
 		}
 	});
 
@@ -135,8 +154,25 @@
 		data: {
 			labels: ['Score', 'Remaining'],
 			datasets: [{
-				data: [{{ results.dmarcScore }}, 100 - {{ results.dmarcScore}}]
+				data: [{{ results.dmarcScore }}, 100 - {{ results.dmarcScore}}],
+				backgroundColor: ['rgb(144, 218, 149)', 'rgb(255, 255, 255)']
 			}]
+		},
+		options: {
+			cutout: '70%',
+			plugins: {
+				legend: {
+					labels: {
+						color: 'rgb(255, 255, 255)',
+						font: {
+							family: '"Trebuchet MS", "Segoe UI", Tahoma, sans-serif',
+							size: 14,
+							style: 'normal',
+							weight: 'bold'
+						}
+					}
+				}
+			}
 		}
 	});					
 
@@ -146,8 +182,25 @@
 		data: {
 			labels: ['Score','Remaining'],
 			datasets: [{
-				data: [{{ results.spfScore }}, 100 - {{ results.spfScore }}]
+				data: [{{ results.spfScore }}, 100 - {{ results.spfScore }}],
+				backgroundColor: ['rgb(144, 218, 149)', 'rgb(255, 255, 255)']
 			}]
+		},
+		options: {
+			cutout: '70%',
+			plugins: {
+				legend: {
+					labels: {
+						color: 'rgb(255, 255, 255)',
+						font: {
+							family: '"Trebuchet MS", "Segoe UI", Tahoma, sans-serif',
+							size: 14,
+							style: 'normal',
+							weight: 'bold'
+						}
+					}
+				}
+			}
 		}
 	});
 
@@ -157,8 +210,25 @@
 		data: {
 			labels: ['Score', 'Remaining'],
 			datasets: [{
-				data: [{{ results.brandImpScore }}, 100 - {{ results.brandImpScore }}]
+				data: [{{ results.brandImpScore }}, 100 - {{ results.brandImpScore }}],
+				backgroundColor: ['rgb(144, 218, 149)', 'rgb(255, 255, 255)']
 			}]
+		},
+		options: {
+			cutout: '70%',
+			plugins: {
+				legend: {
+					labels: {
+						color: 'rgb(255, 255, 255)',
+						font: {
+							family: '"Trebuchet MS", "Segoe UI", Tahoma, sans-serif',
+							size: 14,
+							style: 'normal',
+							weight: 'bold'
+						}
+					}
+				}
+			}
 		}
 	});
 
